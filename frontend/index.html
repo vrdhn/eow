@@ -3,44 +3,119 @@
 <head>
 
   <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
+  <title>Espeak-ng on Web : Colloboratively work on espeak-ng Voices</title>
+  <meta name="description" content="Site helps small changes to espeak-ng voice, and share them">
+  <meta name="author" content="Vardhan Varma">
+  
   <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  
   <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
+       –––––––––––––––––––––––––––––––––––––––––––––––––– 
+       <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  -->
+  
   <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
-
+  
   <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
-
+  
 </head>
 <body>
-
+  
   <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
+    <hr/>
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h4>Basic Page</h4>
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+      <div class="twelve columns">
+	<p>Use this website to develop, share, and refine espeak-ng language files.</p>
+	<p>On pressing 'Play', the entered data is sent to server, and WAV file is geneated.</p>
+	<p>With screen reader, this can be a little confusing, hence audio starts and finish with beep.</p>
+	<p>On pressing 'Share', an unique sharable URL is generated.</p>
+	<p>Please do not abuse the service.<p>
       </div>
     </div>
+    <hr/>
+    <form>
+      <div class="row">
+	<!-- -->
+	<div class="six columns">
+	  <label for="espeakVersion">espeak-ng version</label>
+	  <select class="u-full-width" id="espeakVersion">
+            <option value="git">git head [ 17 Jan 2016] </option>
+            <option value="1.49">1.49 [ 3rd Dec 2016 ]</option>
+            <option value="1.48">1.46 [ 2nd Nov 2016] </option>	    
+	  </select>
+	</div>
+	<!-- -->
+	<div class="six columns">	  
+	  <label for="langVariant">Language & Variant</label>
+	  <select class="u-full-width" id="langVariant">
+            <option value="english/klatt">Englith Klatt</option>
+	  </select>
+	</div>
+      </div>
+      <!-- -->
+      <hr/>
+      <div class="row">	
+	<div class="twelve columns">
+	  <div class="row">
+	    <label for="inputText">Enter Text</label>
+	    <input class="u-full-width" placeholder="Some UTF-8 Text" id="inputText"/>	    
+	  </div>
+	  <div class="row">	
+	    <button class="button-primary">Play</button>
+	    <button class="button-primary">Share</button>
+	  </div>	  
+	</div>	
+      </div>
+      <hr/>
+      <!-- -->
+      <div class="row">	
+	<div class="tweleve columns">
+	    <label for="textAnalysis">Phoneme Analysis</label>
+	    <input class="u-full-width" placeholder="Enter Text and Press Play" id="textAnalysis"/>
+	</div>
+      </div>
+      <hr/>
+      <div class="row">
+	<!-- -->
+	<div class="four columns">
+	  <label for="espeakVersion">dictsource/??_list</label>
+	  <textarea class="u-full-width" placeholder="Changes to _rules files" id="exampleMessage"></textarea>	  
+	</div>
+	<!-- -->
+	<div class="four columns">
+	  <label for="espeakVersion">dictsource/??_rules</label>
+	  <textarea class="u-full-width" placeholder="Changes to _list file" id="exampleMessage"></textarea>	  
+	</div>
+	<!-- -->
+	<div class="four columns">
+	  <label for="espeakVersion">phsource/ph_???</label>
+	  <textarea class="u-full-width" placeholder="Enter phonemes" id="exampleMessage"></textarea>	  
+	</div>
+	<!-- -->
+      </div>      
+    </form>
+    <hr/>
+    <div class="row">
+      <footer>
+	<p>Copyright (C) 2017, Vardhan Varma</p>
+	<p>espeak-ng is available at http://github.com/espeak-ng/espeak-ng</p>
+	<p>The source code of this site is available under GNU GPL3 at http://github.com/vrdhn/eow.</p>
+	<p>Raise issues at http://github.com/vrdhn/eow/issues for requesting changes to this site<p>
+      </footer>
+    </div>
   </div>
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- End Document
+       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>

@@ -59,6 +59,7 @@ Nothing special, just series of controls, grouped by functionality.
 
 ## 6. Visual Design
 
+captured in frontend/index.html
 
 ## 7. URLs, payloads
 The randomly generated _slug_ as query string: http://.../q=_slug_
