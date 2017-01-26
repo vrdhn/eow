@@ -70,6 +70,7 @@ and return a new html page, with path of wave file embededed.
 No fancy, just HTML.
 
 ## 9. Frontend Impl
+golang html/template, embedded in main.go for now.
 
 
 ## 10. Server Design
@@ -78,7 +79,7 @@ A python function to do everything,
 A bottle.py to wrap and call the function.
 
 ## 11. Server Impl
-
+golang, single file for now
 
 ## 12. Deployment
 
