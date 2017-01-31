@@ -67,16 +67,13 @@ The randomly generated _slug_ as query string: http://.../q=_slug_
 and return a new html page, with path of wave file embededed.
 
 ## 8. Frontend Design
-No fancy, just HTML.
+No fancy, just HTML, constructed at server.
 
 ## 9. Frontend Impl
 golang html/template, embedded in main.go for now.
 
 
 ## 10. Server Design
-A SQLite database for storing url's data.
-A python function to do everything,
-A bottle.py to wrap and call the function.
 
 ## 11. Server Impl
 golang, single file for now
