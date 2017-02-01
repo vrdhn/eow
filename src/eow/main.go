@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	"github.com/gorilla/handlers"
 	"net/http"
 	"os"
@@ -72,7 +72,7 @@ func final(w http.ResponseWriter, r *http.Request) {
 	} else {
 		qid = -1
 	}
-	fmt.Println(r.Method, qid)
+	//fmt.Println(r.Method, qid)
 	// GET + no query string => redirect to GET + generated_query_string
 	if qid == -1 {
 		inv := db_new()
@@ -82,7 +82,7 @@ func final(w http.ResponseWriter, r *http.Request) {
 	// GET + query_string => ( pull from db, update form, make audio )
 	if r.Method == "GET" {
 		inv := db_get(qid)
-		fmt.Println(inv)
+		//fmt.Println(inv)
 		tts_run(&inv)
 		send_newpage(w, tts_engines(), inv)
 		return

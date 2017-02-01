@@ -32,10 +32,11 @@
       <hr/>
       <div class="row">
 	<div class="twelve columns">
-	  <p>Use this website to develop, share, and refine espeak-ng language files.</p>
+	  <p>Use this website to listen to espeak-ng and share sounds with others</p>
 	  <p>On pressing Speak, the entered data is sent to server, and MP3 file is geneated.</p>
 	  <p>Below the button is the audio player to play out the file</p>
 	  <p>On pressing 'Share', an new unique sharable URL is generated.</p>
+	  <p>All text are saved in a database for later analysis</p>
 	  <p>Please do not abuse the service.<p>
 	</div>
       </div>
@@ -72,7 +73,7 @@
 	      <input class="button-primary" type="submit" name="share" value="Share"/>
 	    </div>
 	    <div>
-	      <audio autoplay controls prelaod src="/waves/{{.ID}}.mp3"/>
+	      <audio controls prelaod src="/waves/{{.ID}}.mp3"/>
 	    </div>
 	  </div>	
 	  <div class="six columns">

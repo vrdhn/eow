@@ -21,7 +21,7 @@ type byIdent []installation
 
 func (a byIdent) Len() int           { return len(a) }
 func (a byIdent) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-func (a byIdent) Less(i, j int) bool { return a[i].Ident > a[j].Ident }
+func (a byIdent) Less(i, j int) bool { return a[i].Name < a[j].Name }
 
 // scan installation directory for tts instalations...
 // Directory Naming Convention:
