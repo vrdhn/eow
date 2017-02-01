@@ -42,7 +42,7 @@ func parse_form(r *http.Request) (invocation, bool) {
 		switch k {
 		case "share":
 			new_id = true
-		case "play":
+		case "speak":
 			new_id = false
 		case "espeakVersion":
 			inv.TTSVer = val

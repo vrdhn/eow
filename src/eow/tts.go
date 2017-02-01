@@ -3,8 +3,10 @@ package main
 import (
 	"path/filepath"
 	//"fmt"
+	"os"
 	"os/exec"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -82,6 +84,54 @@ func tts_espeak_langs(exe string) []language {
 }
 
 // updates WavePath...
-func tts_run(inv *invocation) {
+func tts_find(inv *invocation) (*installation, *language) {
+	var ins *installation
+	var lang *language
+	for _, ele := range engines {
+		if ele.Ident == inv.TTSVer {
+			ins = &ele
+			for _, ln := range ele.Langs {
+				if ln.Option == inv.Language {
+					lang = &ln
+					break
+				}
+			}
+			break
+		}
 
+	}
+	return ins, lang
+}
+
+func tts_run(inv *invocation) {
+	engine, lang := tts_find(inv)
+	if engine == nil || lang == nil {
+		inv.Wavepath = ""
+		inv.Analysis = ""
+		return
+	}
+	// only speak for now...
+	wave := "waves/" + strconv.Itoa(inv.Id) + ".wav"
+	mp3 := "waves/" + strconv.Itoa(inv.Id) + ".mp3"
+	os.Remove(wave)
+	os.Remove(mp3)
+	stdout, err := exec.Command(
+		"./"+engine.Path,
+		"-v", lang.Option,
+		"-w", wave,
+		"-X",
+		"--", inv.TextInput).Output()
+	if err != nil {
+		inv.Analysis = ""
+		inv.Wavepath = ""
+		return
+	}
+	_, err = exec.Command("lame", wave, mp3).Output()
+	if err != nil {
+		inv.Analysis = string(stdout)
+		inv.Wavepath = mp3
+	} else {
+		inv.Analysis = string(stdout)
+		inv.Wavepath = mp3
+	}
 }

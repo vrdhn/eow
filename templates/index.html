@@ -33,9 +33,9 @@
       <div class="row">
 	<div class="twelve columns">
 	  <p>Use this website to develop, share, and refine espeak-ng language files.</p>
-	  <p>On pressing 'Play', the entered data is sent to server, and WAV file is geneated.</p>
-	  <p>With screen reader, this can be a little confusing, hence audio starts and finish with beep.</p>
-	  <p>On pressing 'Share', an unique sharable URL is generated.</p>
+	  <p>On pressing Speak, the entered data is sent to server, and MP3 file is geneated.</p>
+	  <p>Below the button is the audio player to play out the file</p>
+	  <p>On pressing 'Share', an new unique sharable URL is generated.</p>
 	  <p>Please do not abuse the service.<p>
 	</div>
       </div>
@@ -62,23 +62,22 @@
 	<!-- -->
 	<hr/>
 	<div class="row">	
-	  <div class="twelve columns">
+	  <div class="six columns">
 	    <div class="row">
 	      <label for="inputText">Enter Text</label>
 	      <textarea class="u-full-width" placeholder="Some UTF-8 Text" name="inputText">{{.InputText}}</textarea>
 	    </div>
 	    <div class="row">	
-	      <input class="button-primary" type="submit" name="play" value="Play"/>
+	      <input class="button-primary" type="submit" name="speak" value="Speak"/>
 	      <input class="button-primary" type="submit" name="share" value="Share"/>
-	    </div>	  
+	    </div>
+	    <div>
+	      <audio autoplay controls prelaod src="/waves/{{.ID}}.mp3"/>
+	    </div>
 	  </div>	
-	</div>
-	<hr/>
-	<!-- -->
-	<div class="row">	
-	  <div class="tweleve columns">
+	  <div class="six columns">
 	    <label for="textAnalysis">Phoneme Analysis</label>
-	    <input class="u-full-width" placeholder="Enter Text and Press Play" name="textAnalysis" readonly/>
+	    <pre>{{.Analysis}}</pre>
 	  </div>
 	</div>
 	<div class="row" style="display: none;">

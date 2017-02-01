@@ -3,7 +3,6 @@ package main
 import (
 	"html/template"
 	"net/http"
-	"os"
 )
 
 const testpage = `
@@ -32,6 +31,8 @@ type PageData struct {
 	TTSLangs    map[string][]pair
 	TTSVersion  string
 	LangVariant string
+	VoiceFile   string
+	Analysis    string
 }
 
 // []installation ===> [ [ display_name, ident] , ... ]
@@ -70,20 +71,8 @@ func send_newpage(w http.ResponseWriter, tts []installation, inv invocation) {
 		TTSLangs:    make_html_lang(tts),
 		TTSVersion:  inv.TTSVer,
 		LangVariant: inv.Language,
+		VoiceFile:   inv.Wavepath,
+		Analysis:    inv.Analysis,
 	}
 	tpl.Execute(w, things)
-}
-
-func send_testpage(tts []installation) {
-
-	things := PageData{
-		ID:          -1,
-		InputText:   "HwlloWorld",
-		TTSEngines:  make_html_tts(tts),
-		TTSLangs:    make_html_lang(tts),
-		TTSVersion:  "",
-		LangVariant: "",
-	}
-	t := template.Must(template.New("Page").Parse(testpage))
-	t.Execute(os.Stdout, things)
 }
