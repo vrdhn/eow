@@ -5,9 +5,9 @@
     <!-- Basic Page Needs
 	 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Your page title here :)</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>espeak-ng testing range</title>
+    <meta name="description" content="listen to espeak-ng output; update voice files and share">
+    <meta name="author" content="Vardhan Varma (github.com/vrdhn)">
 
     <!-- Mobile Specific Metas
 	 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -40,7 +40,7 @@
 	</div>
       </div>
       <hr/>
-      <form action="/" method="POST">
+      <form action="/?q={{.ID}}" method="POST">
 	<div class="row">
 	  <!-- -->
 	  <div class="six columns">
@@ -55,7 +55,7 @@
 	  <div class="six columns">	  
 	    <label for="langVariant">Language & Variant</label>
 	    <select class="u-full-width" name="langVariant">
-	    <!-- inserted at run time -->
+	      <!-- inserted at run time -->
 	    </select>
 	  </div>
 	</div>
@@ -65,7 +65,7 @@
 	  <div class="twelve columns">
 	    <div class="row">
 	      <label for="inputText">Enter Text</label>
-	      <input class="u-full-width" placeholder="Some UTF-8 Text" name="inputText" value="{{.InputText}}"/>
+	      <textarea class="u-full-width" placeholder="Some UTF-8 Text" name="inputText">{{.InputText}}</textarea>
 	    </div>
 	    <div class="row">	
 	      <input class="button-primary" type="submit" name="play" value="Play"/>
@@ -81,44 +81,42 @@
 	    <input class="u-full-width" placeholder="Enter Text and Press Play" name="textAnalysis" readonly/>
 	  </div>
 	</div>
+	<div class="row" style="display: none;">
 	<hr/>
-	<div class="row">
-	  <!-- -->
 	  <div class="four columns">
 	    <label for="espeakVersion">dictsource/??_list</label>
 	    <textarea class="u-full-width" placeholder="Changes to _rules files" name="langDictList"></textarea>	  
 	  </div>
-	  <!-- -->
 	  <div class="four columns">
 	    <label for="espeakVersion">dictsource/??_rules</label>
 	    <textarea class="u-full-width" placeholder="Changes to _list file" name="langDictRules"></textarea>	  
 	  </div>
-	  <!-- -->
 	  <div class="four columns">
 	    <label for="espeakVersion">phsource/ph_???</label>
 	    <textarea class="u-full-width" placeholder="Enter phonemes" name="langLangPhoneme"></textarea>	  
 	  </div>
-	  <!-- -->
-	</div>      
+	</div>
       </form>
       <hr/>
       <div class="row">
-	<footer>
-	  <p>Copyright (C) 2017, Vardhan Varma</p>
-	  <p>espeak-ng is available at http://github.com/espeak-ng/espeak-ng</p>
-	  <p>The source code of this site is available under GNU GPL3 at http://github.com/vrdhn/eow.</p>
-	  <p>Raise issues at http://github.com/vrdhn/eow/issues for requesting changes to this site<p>
-	</footer>
+	<div class="eight columns">
+	  <footer>
+	    <p>Copyright (C) 2017, Vardhan Varma</p>
+	    <p>espeak-ng is available at http://github.com/espeak-ng/espeak-ng</p>
+	    <p>The source code of this site is available under GNU GPL3 at <a href="http://github.com/vrdhn/eow" > Github </a> </p>
+	    <p>Raise <a href="http://github.com/vrdhn/eow/issues"> github issues </a> for requesting changes to this site<p>
+	  </footer>
+	</div>
       </div>
     </div>
     <script>
 langVariants = {
-{{ range  $tts, $langs  := .TTSLangs }}
-"{{$tts}}" : 
-'{{ range  $idx, $ele  := $langs }}<option value="{{$ele.External}}">{{$ele.Internal}}</option>{{end}}',
-{{end}}
+    {{ range  $tts, $langs  := .TTSLangs }}
+    "{{$tts}}" : 
+    '{{ range  $idx, $ele  := $langs }}<option value="{{$ele.External}}">{{$ele.Internal}}</option>{{end}}',
+    {{end}}
 }
-    
+
 function updLang () {
     var ver = document.getElementsByName("espeakVersion")[0].value
     var sel = document.getElementsByName("langVariant")[0]
@@ -126,10 +124,15 @@ function updLang () {
     sel.innerHTML = langVariants[ver]
     sel.value = oldval
     if ( sel.selectedIndex == -1 ) {
-       sel.selectedIndex = 0
-     }
+	sel.selectedIndex = 0
+    }
 }
-window.onload = updLang
-</script>      
+function init () {
+    updLang()
+    document.getElementsByName("espeakVersion")[0].value = "{{.TTSVersion}}"
+    document.getElementsByName("langVariant")[0].value = "{{.LangVariant}}"
+}
+window.onload = init
+    </script>      
   </body>
 </html>

@@ -1,30 +1,34 @@
 package main
 
 import (
-	"github.com/boltdb/bolt"
+	"github.com/asdine/storm"
 )
 
-var gdb *bolt.DB
-
-
-type model struct {
-	id  int64		// -1 if not present
-	
-
-}
-
-
+var gdb *storm.DB
 
 func db_open() {
-	db, err := bolt.Open("eow.db", 0600, nil)
-	if err != nil {
-		panic(err)
-	}
+	db, _ := storm.Open("eow.db")
 	gdb = db
 }
 
+func db_new() invocation {
+	inv := invocation{}
+	gdb.Save(&inv)
+	return inv
+}
 
-func db_next() int {
+func db_get(id int) invocation {
+	var inv invocation
+	gdb.One("Id", id, &inv)
+	return inv
+}
 
-	return 123
+func db_clone(inv *invocation) {
+	inv.Id = 0
+	gdb.Save(inv)
+}
+
+func db_update(inv invocation) {
+	gdb.Update(&inv)
+
 }
